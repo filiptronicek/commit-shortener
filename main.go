@@ -4,12 +4,16 @@ import (
 	"fmt"
 	"log"
 	"sort"
+	"time"
 
 	git "github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing/object"
 )
 
 func main() {
+
+	start := time.Now()
+
 	// Open the repository
 	r, err := git.PlainOpen("../vscode")
 	if err != nil {
@@ -49,6 +53,9 @@ func main() {
 		}
 	}
 	fmt.Printf("Longest common prefix length is: %d\n", maxPrefixLength)
+
+	elapsed := time.Since(start)
+	fmt.Printf("Execution time: %s\n", elapsed)
 }
 
 func longestCommonPrefixLength(s1, s2 string) int {
